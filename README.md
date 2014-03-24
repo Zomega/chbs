@@ -1,4 +1,3 @@
-chbs
+correct horse battery staple
 ====
-
-Correct Horse Battery Staple: Random Passwords for human beings.
+Random Passwords for human beings.
