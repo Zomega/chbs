@@ -1,0 +1,27 @@
+#!/usr/bin/env python
+
+import click
+import random
+import string
+import math
+
+def load_wordlist():
+  with open('wordlist.txt') as f:
+    return [word.strip() for word in f.readlines()][:4096]
+
+@click.group()
+def cli():
+  pass
+
+@cli.command()
+@click.option('--bytes', default=64, help='Minimum number of bytes of entropy in the generated password.')
+def generate(bytes):
+  words = load_wordlist()
+
+  bytes_entropy_per_word = math.log(len(words), 2)
+  words_needed = int(math.ceil(bytes / bytes_entropy_per_word))
+
+  print ' '.join(random.SystemRandom().choice(words) for _ in range(words_needed))
+
+if __name__ == '__main__':
+  cli()
